@@ -24,6 +24,10 @@ class Program
 
                 WriteLine($"a: {a}\nb: {b}");
             }
+            else
+            {
+                WriteLine("Invalid values.");
+            }
         }
         else
         {
