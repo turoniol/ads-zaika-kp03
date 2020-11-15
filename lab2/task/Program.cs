@@ -96,10 +96,7 @@ class Program
                 uj = ui - 1;
                 while (uj >= 0)
                 {
-                    if (uj < ui)
-                    {
-                        PathStep(path, ref uMax, ref uMin, ui, uj, ref counter, matrix[uj, ui]);
-                    }
+                    PathStep(path, ref uMax, ref uMin, ui, uj, ref counter, matrix[uj, ui]);
                     uj--;
                 }
                 ui--;
@@ -116,10 +113,7 @@ class Program
                 oi = oj - 1;
                 while (oi >= 0)
                 {
-                    if (oj > oi)
-                    {
-                        PathStep(path, ref oMax, ref oMin, oi, oj, ref counter, matrix[oj, oi]);
-                    }
+                    PathStep(path, ref oMax, ref oMin, oi, oj, ref counter, matrix[oj, oi]);
                     oi--;
                 }
                 oj--;
@@ -146,5 +140,6 @@ class Program
         {
             WriteLine("N must be must be a natural number");
         }
+        Read();
     }
 }
