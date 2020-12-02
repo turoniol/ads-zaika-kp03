@@ -14,8 +14,9 @@ class Program
                 {
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
                 }
-                Console.Write("{0} ", m[i, j]);
+                Console.Write("{0}", m[i, j]);
                 Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(" ");
             }
             Console.WriteLine();
         }
@@ -59,7 +60,7 @@ class Program
         while (!sorted)
         {
             sorted = true;
-            for (int j = 2; j < length; j += 2)
+            for (int j = length - 2; j > 0; j -= 2)
             {
                 if (a[j] > a[j - 1])
                 {
@@ -67,7 +68,7 @@ class Program
                     sorted = false;
                 }
             }
-            for (int j = 1; j < length; j += 2)
+            for (int j = length - 1; j > 0; j -= 2)
             {
                 if (a[j] > a[j - 1])
                 {
