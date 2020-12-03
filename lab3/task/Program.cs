@@ -62,7 +62,7 @@ class Program
             sorted = true;
             for (int j = length - 2; j > 0; j -= 2)
             {
-                if (a[j] > a[j - 1])
+                if (a[j] < a[j - 1])
                 {
                     Swap(ref a[j], ref a[j - 1]);
                     sorted = false;
@@ -70,7 +70,7 @@ class Program
             }
             for (int j = length - 1; j > 0; j -= 2)
             {
-                if (a[j] > a[j - 1])
+                if (a[j] < a[j - 1])
                 {
                     Swap(ref a[j], ref a[j - 1]);
                     sorted = false;
