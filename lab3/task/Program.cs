@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 class Program
 {
     static bool TryParse(out int a) => int.TryParse(Console.ReadLine(), out a);
@@ -26,8 +25,12 @@ class Program
         int length = matrix.Length;
         int degree = (int) Math.Log10(length);
         int min = (int) Math.Pow(10, degree);
+        if (length / min == 9)
+        {
+            min *= 10;
+        }
         int max = min * 10;
-        int[] a = new int[length];
+        int[] generatedValues = new int[max - min];
         Random rand = new Random();
 
         for (int i = 0; i < matrix.GetLength(0); ++i)
@@ -38,14 +41,13 @@ class Program
                 do 
                 {
                     val = rand.Next(min, max);
-                } while (Array.IndexOf(a, val) != -1);
+                } while (generatedValues[val - min] != 0);
 
-                a[i * matrix.GetLength(1) + j] = val;
+                generatedValues[val - min] = val;
                 matrix[i, j] = val;
             }
         }
     }
-    
     static void Swap(ref int a, ref int b)
     {
         int t = a;
@@ -121,10 +123,15 @@ class Program
         bool nExist = (TryParse(out n) && n > 0);
         Console.WriteLine("Enter k:");
         bool kExist = (TryParse(out k) && k > 0);
+        // Console.WriteLine("size: {0}", m);
         if (mExist && nExist && kExist)
         {
+            // System.Diagnostics.Stopwatch myStopwatch = new System.Diagnostics.Stopwatch();
+            // myStopwatch.Start();
             int[,] arr = new int[m, n];
             FillMatrix(arr);
+            // myStopwatch.Stop();
+            // Console.WriteLine("{0} s {1} ms", myStopwatch.Elapsed.Seconds, myStopwatch.Elapsed.Milliseconds % 1000);
             Console.WriteLine("Source matrix: ");
             PrintMatrix(arr, k);
             SortMatrix(arr, k);
