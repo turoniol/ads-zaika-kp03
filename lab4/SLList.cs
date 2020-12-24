@@ -21,18 +21,7 @@ namespace List
       head = null;
     }
 
-    private SLNode Tail()
-    {
-      SLNode current = head;
-      if (current == null) return null;
-      while (current.next != null)
-      {
-        current = current.next;
-      }
-      return current;
-    }
-
-    public void AddLast(int data)
+    public void AddFirst(int data)
     {
       SLNode node = new SLNode(data);
       if (head == null)
@@ -41,7 +30,8 @@ namespace List
         head = node;
         return;
       }
-      Tail().next = node;
+      node.next = head;
+      head = node;
     }
 
     public void Print()

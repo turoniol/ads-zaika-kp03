@@ -252,7 +252,7 @@ namespace List
       {
         if (current.data < data)
         {
-          list.AddLast(current.data);
+          list.AddFirst(current.data);
           this.DeleteAtPos(i);
           i -= 1;
         }

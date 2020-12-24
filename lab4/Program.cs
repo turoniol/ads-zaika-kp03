@@ -111,20 +111,11 @@ class Program
         {
             SLList slist = null;
             int mid = (list.size % 2 == 0) ? list.size / 2 : list.size / 2 + 1;
-            int data = 0;
-            var dataExist = int.TryParse(parsedCommand[1], out data);
-
-            if (!dataExist)
-            {
-                Printer.PrintError("Invalid index.");
-                return false;
-            }
-
             var midData = list.GetDataAtPos(mid);
+            
             slist = list.DeleteNodesWithData(midData);
             Printer.Print($"Mid value: {midData}");
             slist.Print();
-            list.AddFirst(data);
         }
         else if (keyWord == "help" && parsedCommand.Length == 1)
         {
