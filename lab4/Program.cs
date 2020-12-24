@@ -98,12 +98,6 @@ class Program
         }
         else if (keyWord == "part1" && parsedCommand.Length == 2)
         {
-            int s = list.size;
-            int mid = (s % 2 == 0) ? s / 2 + 1: s / 2 + 2;
-            if (s == 1)
-            {
-                mid = 1;
-            }
             int data = 0;
             bool dataExist = int.TryParse(parsedCommand[1], out data);
             if (!dataExist)
@@ -111,7 +105,7 @@ class Program
                 Printer.PrintError("Invalid data.");
                 return false;
             }
-            list.AddAtPosition(data, mid);
+            list.AddAfterMid(data);
         }
         else if (keyWord == "part2" && parsedCommand.Length == 2)
         {
@@ -127,10 +121,10 @@ class Program
             }
 
             var midData = list.GetDataAtPos(mid);
-            slist = list.DeleteNodesWithData(mid);
-            list.AddFirst(data);
+            slist = list.DeleteNodesWithData(midData);
             Printer.Print($"Mid value: {midData}");
             slist.Print();
+            list.AddFirst(data);
         }
         else if (keyWord == "help" && parsedCommand.Length == 1)
         {

@@ -32,7 +32,7 @@ namespace List
       return current;
     }
 
-    public void AddNext(int data)
+    public void AddLast(int data)
     {
       SLNode node = new SLNode(data);
       if (head == null)

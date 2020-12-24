@@ -92,6 +92,8 @@ namespace List
       tail = head;
       head.next = tail;
       head.prev = tail;
+      tail.prev = head;
+      tail.next = head;
       size = 1;
     }
 
@@ -238,6 +240,7 @@ namespace List
       current.next.prev = current.prev;
 
       RemoveToSize();
+      Print();
     }
 
     public SLList DeleteNodesWithData(int data)
@@ -249,7 +252,7 @@ namespace List
       {
         if (current.data < data)
         {
-          list.AddNext(current.data);
+          list.AddLast(current.data);
           this.DeleteAtPos(i);
           i -= 1;
         }
@@ -272,6 +275,17 @@ namespace List
         pos -= 1;
       }
       return cur.data;
+    }
+
+    public void AddAfterMid(int data)
+    {
+      int s = size;
+      int mid = (s % 2 == 0) ? s / 2 + 1: s / 2 + 2;
+      if (s == 1)
+      {
+          mid = 1;
+      }
+      AddAtPosition(data, mid);
     }
 
     private bool IsPosCorrect(int pos)
