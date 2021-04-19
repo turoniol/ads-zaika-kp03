@@ -40,23 +40,26 @@ namespace ASDLib
 
         public bool RemoveEntry(TKey key)
         {
-            int index = GetIndex(key);
+            int index = SearchInTable(key);
 
-            if (table[index] == null)
+            if (index == -1)
             {
                 return false;
             }
 
-            table[index] = null;
             size -= 1;
+            table[index] = null;
 
             return true;
         }
 
         public Entry<TKey, TValue> FindEntry(TKey key)
         {
-            int index = GetIndex(key);
-
+            int index = SearchInTable(key);
+            if (index == -1) 
+            {
+                return null;
+            }
             return table[index];
         }
 
@@ -125,6 +128,7 @@ namespace ASDLib
             int value = GetHash(key);
             int i = 0;
             int index =  value;
+
             while (table[index] != null && !IsEqual(table[index].key, key))
             {
                 i += 1;
@@ -132,6 +136,20 @@ namespace ASDLib
             }
 
             return index;
+        }
+
+        private int SearchInTable(TKey key)
+        {
+            for (int i = 0; i < table.Length; ++i)
+            {
+                if (table[i] == null) continue;
+                if (IsEqual(key, table[i].key))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         static private bool IsEqual(TKey left, TKey right)
@@ -153,6 +171,6 @@ namespace ASDLib
             }
 
             return true;
-        }
+        }   
     }
 }
